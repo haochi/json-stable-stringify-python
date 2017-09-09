@@ -1,10 +1,11 @@
-from collections import OrderedDict, Mapping
+from collections import OrderedDict, Mapping, Sequence
 import json
 
 COMPACT_SEPARATORS = (',', ':')
 
 def order_by_key(kv):
-  return kv[0]
+  key, val = kv
+  return key
 
 def recursive_order(node):
   if isinstance(node, Mapping):
@@ -12,6 +13,8 @@ def recursive_order(node):
     for key, value in ordered_mapping.items():
       ordered_mapping[key] = recursive_order(value)
     return ordered_mapping
+  elif isinstance(node, Sequence) and not isinstance(node, (str, bytes)):
+    return [recursive_order(item) for item in node]
   return node
 
 def stringify(node):

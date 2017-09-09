@@ -26,6 +26,18 @@ class TestStringify(unittest.TestCase):
         expected = '{"a":{"b":{"c":[1,2,3,null]}}}'
         self.assertEqual(actual, expected)
 
+    def test_array_with_objects(self):
+        node = [{'z': 1, 'a': 2}]
+        actual = stringify.stringify(node)
+        expected = '[{"a":2,"z":1}]'
+        self.assertEqual(actual, expected)
+
+    def test_nested_array_objects(self):
+        node = [{'z': [[{'y': 1, 'b': 2}]], 'a': 2}]
+        actual = stringify.stringify(node)
+        expected = '[{"a":2,"z":[[{"b":2,"y":1}]]}]'
+        self.assertEqual(actual, expected)
+
     def test_array_with_none(self):
         node = [1, None]
         actual = stringify.stringify(node)

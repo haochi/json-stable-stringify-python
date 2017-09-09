@@ -1,5 +1,7 @@
 # json-stable-stringify-python
 
+[![CircleCI](https://circleci.com/gh/haochi/json-stable-stringify-python.svg?style=shield)](https://circleci.com/gh/haochi/json-stable-stringify-python)
+
 Basically a Python port of [substack's json-stable-stringify](https://github.com/substack/json-stable-stringify) with just the default options.
 
 ## Installation
